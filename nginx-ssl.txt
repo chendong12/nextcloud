@@ -1,0 +1,37 @@
+安装nexcloud 方法
+https://www.cnblogs.com/kevingrace/p/8343060.html
+
+通过上面方法安装nextcloud后，通过https访问后将出现不可信任的情况，通过以下方法设置https可信任ssl
+
+1、安装必要的软件
+#yum install epel-release
+#yum install certbot-nginx
+
+2、修改nginx nexcloud 配置文件
+#vi /etc/nginx/conf.d/nextcloud.conf
+在nginx 配置文件中的server 部分增加下面一行内容，如果之前存在server_name，是ip地址，替换为域名即可
+server_name cloud2.rexen.net;
+
+#systemctl restart nginx
+
+3、获取证书
+#certbot --nginx -d cloud2.rexen.net
+选择1 或者 2 回车，之后会生成下面的证书
+/etc/letsencrypt/live/cloud2.rexen.net/fullchain.pem
+/etc/letsencrypt/live/cloud2.rexen.net/privkey.pem
+
+4、更新Diffie-Hellman参数
+如果您现在使用SSL实验室服务器测试测试您的服务器，由于Diffie-Hellman参数较弱，它只会获得B级。
+这会影响我们的服务器与其用户之间的初始密钥交换的安全性。我们可以通过创建一个新dhparam.pem文件并将其添加到我们的server块来解决这个问题
+#openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
+
+5、修改nginx nexcloud 配置文件
+#vi /etc/nginx/conf.d/nextcloud.conf
+在nginx 配置文件中的server 部分中增加下面一行内容
+ssl_dhparam /etc/ssl/certs/dhparam.pem;
+
+6、自动更新证书
+加密证书只有90天有效,renew Certbot 的命令将检查系统上安装的所有证书，并在小于30天的时间内更新任何设置为过期的证书
+
+crontab -e
+15 3 * * * /usr/bin/certbot renew --quiet
