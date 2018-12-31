@@ -1,7 +1,7 @@
 # 通过docker安装nextcloud＋onlyoffice＋mysql并配置`ip地址`ssl
 ## 主要内容
 1. 通过docker安装nextcloud＋onlyoffice＋mysql
-2. 配置通过https://youip 登陆
+2. 配置通过https://192.168.9.51 登陆(**其中`192.168.9.51`为演示IP地址，你需要修改为你实际IP地址**)
 3. 配置 SSL 自签名
 4. 最终实现通过https://yourrip 来访问服务器，避免出现ssl不可信的情况
 ## 系统要求
