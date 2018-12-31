@@ -3,7 +3,7 @@
 1. 通过docker安装nextcloud＋onlyoffice＋mysql
 2. 配置通过https://192.168.9.51 登陆(**其中`192.168.9.51`为演示IP地址，你需要修改为你实际IP地址**)
 3. 配置 SSL 自签名
-4. 最终实现通过https://yourrip 来访问服务器，避免出现ssl不可信的情况
+4. 最终实现通过https://192.168.9.51 来访问服务器，避免出现ssl不可信的情况
 ## 系统要求
 * 系统: Centos7
 * 内存: 2G 以上
@@ -45,16 +45,17 @@ git submodule update --remote
 docker-compose up -d
 ```
 > 打开浏览器输入服务器IP地址，http://your_ip_address 在出现的配置页面中输入
->> 用户名：admin，管理密码
->> 数据库选择mysql，数据库的帐号、密码、数据库名、数据库地址信息，见docker-compose.yml 文件
-> 注意：配置的数据库地址localhost 为mariadb
+> * 用户名：admin，管理密码
+> * 数据库选择mysql，数据库的帐号、密码、数据库名、数据库地址信息，见docker-compose.yml 文件
+> * 注意：配置的数据库地址localhost 为mariadb
+***
 > 配置完成之后，开启onlyoffice支持
 ```
 cd /root/docker-onlyoffice-nextcloud-mysql/
 bash set_configuration.sh
 ```
 > 打开浏览器http://your_ip_address  通过上面配置的admin帐号和密码进行登陆
-**如果不需要通过域名访问，或者https访问，到此配置成功，您可以使用了**
+> **如果不需要通过域名访问，或者https访问，到此配置成功，您可以使用了**
 
 ### 文件位置说明
 * nginx配置文件
