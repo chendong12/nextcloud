@@ -2,8 +2,8 @@
 
 ## 通过https://192.168.9.51 访问nextcloud
 
-* https://github.com/chendong12/nextcloud/nextcloud-onlyoffice-mysql-domain-ssl.md
+* https://github.com/chendong12/nextcloud/blob/master/nextcloud-onlyoffice-mysql-domain-ssl.md
 
 ## 通过https://cloud.rexen.net 访问nextcloud
 
-* https://github.com/chendong12/nextcloud/nextcloud-onlyoffice-mysql-ip-ssl.md
+* https://github.com/chendong12/nextcloud/blob/master/nextcloud-onlyoffice-mysql-ip-ssl.md
