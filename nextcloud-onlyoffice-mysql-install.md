@@ -5,8 +5,11 @@
 * 3、通过letsencrypt 配置免费 SSL 证书
 * 4、最终实现通过https://cloud.rexen.ne 来访问服务器，避免出现ssl不可信的情况
 ## 系统要求
-本教程是在Centos7 上部署的
+* 系统: Centos7
+* 内存: 2G 以上
+* 硬盘: 10G 以上
 ## 系统初始化
+> 关闭selinux，自动更新时间，停止firewalld
 ```
 setenforce 0
 sed -i "s/SELINUX=enforcing/SELINUX=disabled/g" /etc/selinux/config
