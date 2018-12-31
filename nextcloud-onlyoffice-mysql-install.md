@@ -80,7 +80,51 @@ array (
 
 ```
 ## 通过letsencrypt 配置免费 SSL 证书
+* 停止 nextcloud 
+```
+cd /root/docker-onlyoffice-nextcloud-mysql/
+docker-compose stop
+```
 * 拉取并运行镜像，生成证书
+```
 docker pull quay.io/letsencrypt/letsencrypt:latest
 docker run -it --rm -p 80:80 -p 443:443  -v /etc/letsencrypt:/etc/letsencrypt quay.io/letsencrypt/letsencrypt auth
+```
+* 选择第一项，然后输入域名、邮箱地址等信息，最后会生成证书文件
 
+```
+Warning: This Docker image will soon be switching to Alpine Linux.
+You can switch now using the certbot/certbot repo on Docker Hub.
+/opt/certbot/venv/local/lib/python2.7/site-packages/cryptography/hazmat/primitives/constant_time.py:26: CryptographyDeprecationWarning: Support for your Python version is deprecated. The next version of cryptography will remove support. Please upgrade to a 2.7.x release that supports hmac.compare_digest as soon as possible.
+  utils.DeprecatedIn23,
+Saving debug log to /var/log/letsencrypt/letsencrypt.log
+
+How would you like to authenticate with the ACME CA?
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+1: Spin up a temporary webserver (standalone)
+2: Place files in webroot directory (webroot)
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Select the appropriate number [1-2] then [enter] (press 'c' to cancel): 1
+Plugins selected: Authenticator standalone, Installer None
+Please enter in your domain name(s) (comma and/or space separated)  (Enter 'c'
+to cancel): cloud.rexen.net
+Obtaining a new certificate
+Performing the following challenges:
+http-01 challenge for cloud.rexen.net
+Waiting for verification...
+Cleaning up challenges
+
+IMPORTANT NOTES:
+ - Congratulations! Your certificate and chain have been saved at:
+   /etc/letsencrypt/live/cloud.rexen.net/fullchain.pem
+   Your key file has been saved at:
+   /etc/letsencrypt/live/cloud.rexen.net/privkey.pem
+   Your cert will expire on 2019-03-29. To obtain a new or tweaked
+   version of this certificate in the future, simply run certbot
+   again. To non-interactively renew *all* of your certificates, run
+   "certbot renew"
+ - If you like Certbot, please consider supporting our work by:
+
+   Donating to ISRG / Let's Encrypt:   https://letsencrypt.org/donate
+   Donating to EFF:                    https://eff.org/donate-le
+```
