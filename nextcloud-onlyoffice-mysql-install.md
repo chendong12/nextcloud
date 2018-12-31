@@ -36,11 +36,11 @@ git submodule update --remote
 #运行 Docker Compose:
 docker-compose up -d
 ```
-打开浏览器输入服务器IP地址，http://your_ip_address 在出现的配置页面中输入
-用户名：admin，管理密码
-数据库选择mysql，数据库的帐号、密码、数据库名、数据库地址信息，见docker-compose.yml 文件
-注意：配置的数据库地址localhost 为mariadb
-配置完成之后，开启onlyoffice支持
+> 打开浏览器输入服务器IP地址，http://your_ip_address 在出现的配置页面中输入
+> 用户名：admin，管理密码
+> 数据库选择mysql，数据库的帐号、密码、数据库名、数据库地址信息，见docker-compose.yml 文件
+> 注意：配置的数据库地址localhost 为mariadb
+> 配置完成之后，开启onlyoffice支持
 ```
 cd /root/docker-onlyoffice-nextcloud-mysql/
 bash set_configuration.sh
