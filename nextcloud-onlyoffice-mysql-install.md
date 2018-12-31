@@ -67,10 +67,10 @@ server_name cloud.rexen.net;
 ```
 vi /var/lib/docker/volumes/dockeronlyofficenextcloudmysql_app_data/_data/config/config.php
 ```
-
+修改24、30行的IP地址为域名
 ```
 array (
-    0 => '`cloud.rexen.net`',
+    0 => 'cloud.rexen.net',
     1 => 'nginx-server',
   ),
   'datadirectory' => '/var/www/html/data',
@@ -79,5 +79,8 @@ array (
   'overwrite.cli.url' => 'http://cloud.rexen.net',
 
 ```
-
+## 通过letsencrypt 配置免费 SSL 证书
+* 拉取并运行镜像，生成证书
+docker pull quay.io/letsencrypt/letsencrypt:latest
+docker run -it --rm -p 80:80 -p 443:443  -v /etc/letsencrypt:/etc/letsencrypt quay.io/letsencrypt/letsencrypt auth
 
