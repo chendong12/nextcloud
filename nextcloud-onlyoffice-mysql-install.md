@@ -1,7 +1,7 @@
 #           通过docker安装nextcloud＋onlyoffice＋mysql
 ## 主要内容
-* 1、通过docker安装nextcloud＋onlyoffice＋mysql
-* 2、配置通过域名登陆
+. 通过docker安装nextcloud＋onlyoffice＋mysql
+. 配置通过域名登陆
 * 3、通过letsencrypt 配置免费 SSL 证书
 * 4、最终实现通过https://cloud.rexen.ne 来访问服务器，避免出现ssl不可信的情况
 ## 系统要求
