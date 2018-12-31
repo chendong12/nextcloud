@@ -37,15 +37,15 @@ git submodule update --remote
 docker-compose up -d
 ```
 > 打开浏览器输入服务器IP地址，http://your_ip_address 在出现的配置页面中输入
-> 用户名：admin，管理密码
-> 数据库选择mysql，数据库的帐号、密码、数据库名、数据库地址信息，见docker-compose.yml 文件
+>> 用户名：admin，管理密码
+>> 数据库选择mysql，数据库的帐号、密码、数据库名、数据库地址信息，见docker-compose.yml 文件
 > 注意：配置的数据库地址localhost 为mariadb
 > 配置完成之后，开启onlyoffice支持
 ```
 cd /root/docker-onlyoffice-nextcloud-mysql/
 bash set_configuration.sh
 ```
-打开浏览器http://your_ip_address  通过上面配置的admin帐号和密码进行登陆
+> 打开浏览器http://your_ip_address  通过上面配置的admin帐号和密码进行登陆
 **如果不需要通过域名访问，或者https访问，到此配置成功，您可以使用了**
 
 ### 文件位置说明
@@ -59,7 +59,7 @@ bash set_configuration.sh
 ```
 vi /root/docker-onlyoffice-nextcloud-mysql/nginx.conf
 ```
-在server 部分增加下面的内容，后面的cloud.rexen.net 为你的域名
+> 在server 部分增加下面的内容，后面的cloud.rexen.net 为你的域名
 ```
 server_name cloud.rexen.net;
 ```
@@ -67,7 +67,7 @@ server_name cloud.rexen.net;
 ```
 vi /var/lib/docker/volumes/dockeronlyofficenextcloudmysql_app_data/_data/config/config.php
 ```
-修改24、30行的IP地址为域名
+> 修改24、30行的IP地址为域名
 ```
 array (
     0 => 'cloud.rexen.net',
@@ -148,7 +148,7 @@ nginx:
 * 修改nginx 配置文件，配置ssl证书
 ```vi /root/docker-onlyoffice-nextcloud-mysql/nginx.conf
 ```
-（1）在server部分做如下改动，ssl 开头的三行内容是增加的
+>  （1）在server部分做如下改动，ssl 开头的三行内容是增加的
 ```
   server {
         listen 443 ssl;
@@ -158,7 +158,7 @@ nginx:
         ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
 ```
 
-（2）然后在倒数第二行增加如下内容目的是为了访问http 的时候自动跳转到https
+> （2）然后在倒数第二行增加如下内容目的是为了访问http 的时候自动跳转到https
 ```
 server {
            listen 80;
@@ -168,13 +168,13 @@ server {
 ```
 
 * 通过浏览器登陆 nextcloud 修改onlyoffice 配置
-到设置中选择onlyoffice，打开onlyoffice api 页面
-把Server address for internet requests form the Document Editing Src，修改为你的https的域名，我的https域名为 https://cloud.rexen.net
+> 到设置中选择onlyoffice，打开onlyoffice api 页面
+>> 把Server address for internet requests form the Document Editing Src，修改为你的https的域名，我的https域名为 https://cloud.rexen.net
 * 修改 nextcloud 配置文件
 ```
 vi /var/lib/docker/volumes/dockeronlyofficenextcloudmysql_app_data/_data/config/config.php
 ```
-修改其中的30、43行为你的https域名
+> 修改其中的30、43行为你的https域名
 * 重启docker-compose
 ```
 cd /root/docker-onlyoffice-nextcloud-mysql/
