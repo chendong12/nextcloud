@@ -1,4 +1,4 @@
-#            通过docker安装nextcloud＋onlyoffice＋mysql
+#           :通过docker安装nextcloud＋onlyoffice＋mysql:
 ## 系统要求
 本教程是在Centos7 上部署的
 ## 系统初始化
