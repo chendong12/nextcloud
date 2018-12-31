@@ -48,11 +48,36 @@ bash set_configuration.sh
 打开浏览器http://your_ip_address  通过上面配置的admin帐号和密码进行登陆
 **如果不需要通过域名访问，或者https访问，到此配置成功，您可以使用了**
 
-## 文件位置说明
+### 文件位置说明
 * nginx配置文件
 /root/docker-onlyoffice-nextcloud-mysql/nginx.conf
 * nextcloud数据存储位置
 /var/lib/docker/volumes/dockeronlyofficenextcloudmysql_app_data/_data
 
+## 2、配置通过域名访问nextcloud
+* 1）修改 nginx 配置文件
+```
+vi /root/docker-onlyoffice-nextcloud-mysql/nginx.conf
+```
+在server 部分增加下面的内容，后面的cloud.rexen.net 为你的域名
+```
+server_name cloud.rexen.net;
+```
+* 2）修改 nextcloud 配置文件
+```
+vi /var/lib/docker/volumes/dockeronlyofficenextcloudmysql_app_data/_data/config/config.php
+```
+
+```
+array (
+    0 => '`cloud.rexen.net`',
+    1 => 'nginx-server',
+  ),
+  'datadirectory' => '/var/www/html/data',
+  'dbtype' => 'mysql',
+  'version' => '15.0.0.10',
+  'overwrite.cli.url' => 'http://cloud.rexen.net',
+
+```
 
 
