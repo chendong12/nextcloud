@@ -1,4 +1,4 @@
-#           :通过docker安装nextcloud＋onlyoffice＋mysql:
+#           通过docker安装nextcloud＋onlyoffice＋mysql
 ## 系统要求
 本教程是在Centos7 上部署的
 ## 系统初始化
@@ -128,3 +128,57 @@ IMPORTANT NOTES:
    Donating to ISRG / Let's Encrypt:   https://letsencrypt.org/donate
    Donating to EFF:                    https://eff.org/donate-le
 ```
+* 复制上面生成的证书文件
+```
+mkdir /root/docker-onlyoffice-nextcloud-mysql/cert
+cp  /etc/letsencrypt/live/cloud.rexen.net/fullchain.pem /root/docker-onlyoffice-nextcloud-mysql/cert
+cp /etc/letsencrypt/live/cloud.rexen.net/privkey.pem /root/docker-onlyoffice-nextcloud-mysql/cert
+```
+* 修改docker-compose 文件，映射本地证书文件夹到docker 的nginx下
+```
+cd /root/docker-onlyoffice-nextcloud-mysql/
+vi docker-compose.yml
+```
+* 在nginx 的volumes 下面增加目录映射，如下所示最后一行
+```
+nginx:
+     volumes:
+      - ./cert:/etc/nginx/cert
+```
+* 修改nginx 配置文件，配置ssl证书
+```vi /root/docker-onlyoffice-nextcloud-mysql/nginx.conf
+```
+（1）在server部分做如下改动，ssl 开头的三行内容是增加的
+```
+  server {
+        listen 443 ssl;
+        server_name cloud.rexen.net;
+        ssl_certificate /etc/nginx/cert/fullchain.pem;
+        ssl_certificate_key /etc/nginx/cert/privkey.pem;
+        ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+```
+
+（2）然后在倒数第二行增加如下内容目的是为了访问http 的时候自动跳转到https
+```
+server {
+           listen 80;
+           server_name cloud.rexen.net;
+           return 301 https://$host$request_uri;
+      }
+```
+
+* 通过浏览器登陆 nextcloud 修改onlyoffice 配置
+到设置中选择onlyoffice，打开onlyoffice api 页面
+把Server address for internet requests form the Document Editing Src，修改为你的https的域名，我的https域名为 https://cloud.rexen.net
+* 修改 nextcloud 配置文件
+```
+vi /var/lib/docker/volumes/dockeronlyofficenextcloudmysql_app_data/_data/config/config.php
+```
+修改其中的30、43行为你的https域名
+* 重启docker-compose
+```
+cd /root/docker-onlyoffice-nextcloud-mysql/
+docker-compose down
+docker-compose up -d
+```
+** 注意：用docker-compose restart 是不能加载分区的 **
