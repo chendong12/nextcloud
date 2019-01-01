@@ -133,10 +133,6 @@ server {
       }
 ```
 
-* 通过浏览器登陆 nextcloud 修改onlyoffice 配置
-> 到设置中选择onlyoffice，打开onlyoffice api 页面
-> 把Server address for internet requests form the Document Editing Src，修改为你的nextcloud 访问地址https://192.168.9.51
-
 * 修改 nextcloud 配置文件
 ```
 vi /var/lib/docker/volumes/dockeronlyofficenextcloudmysql_app_data/_data/config/config.php
@@ -178,3 +174,7 @@ docker-compose up -d
 ```
 **注意:用docker-compose restart 是不能加载分区的 **
 
+* 通过浏览器登陆 nextcloud 修改onlyoffice 配置
+> 到设置中选择onlyoffice，打开onlyoffice api 页面
+> 把Server address for internet requests form the Document Editing Src，修改为你的nextcloud 访问地址https://192.168.9.51
+> 最后点击保存
