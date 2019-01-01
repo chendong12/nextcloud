@@ -63,30 +63,7 @@ bash set_configuration.sh
 /var/lib/docker/volumes/dockeronlyofficenextcloudmysql_app_data/_data
 
 ## 2、配置通过域名访问nextcloud
-* 1）修改 nginx 配置文件
-```
-vi /root/docker-onlyoffice-nextcloud-mysql/nginx.conf
-```
-> 在server 部分增加下面的内容，后面的cloud.rexen.net 为你的域名
-```
-server_name cloud.rexen.net;
-```
-* 2）修改 nextcloud 配置文件
-```
-vi /var/lib/docker/volumes/dockeronlyofficenextcloudmysql_app_data/_data/config/config.php
-```
-> 修改24、30行的IP地址为域名
-```
-array (
-    0 => 'cloud.rexen.net',
-    1 => 'nginx-server',
-  ),
-  'datadirectory' => '/var/www/html/data',
-  'dbtype' => 'mysql',
-  'version' => '15.0.0.10',
-  'overwrite.cli.url' => 'http://cloud.rexen.net',
 
-```
 ## 通过letsencrypt 配置免费 SSL 证书
 * 停止 nextcloud 
 ```
@@ -175,9 +152,6 @@ server {
       }
 ```
 
-* 通过浏览器登陆 nextcloud 修改onlyoffice 配置
-> 到设置中选择onlyoffice，打开onlyoffice api 页面
->> 把Server address for internet requests form the Document Editing Src，修改为你的https的域名，我的https域名为 https://cloud.rexen.net
 * 修改 nextcloud 配置文件
 ```
 vi /var/lib/docker/volumes/dockeronlyofficenextcloudmysql_app_data/_data/config/config.php
@@ -189,4 +163,8 @@ cd /root/docker-onlyoffice-nextcloud-mysql/
 docker-compose down
 docker-compose up -d
 ```
+
+* 通过浏览器登陆 nextcloud 修改onlyoffice 配置
+> 到设置中选择onlyoffice，打开onlyoffice api 页面
+>> 把Server address for internet requests form the Document Editing Src，修改为你的https的域名，我的https域名为 https://cloud.rexen.net
 ** 注意：用docker-compose restart 是不能加载分区的 **
