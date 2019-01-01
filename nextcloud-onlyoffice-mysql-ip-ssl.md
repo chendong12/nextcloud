@@ -63,23 +63,6 @@ bash set_configuration.sh
 * nextcloud数据存储位置
 /var/lib/docker/volumes/dockeronlyofficenextcloudmysql_app_data/_data
 
-## 2、配置通过域名访问nextcloud
-* 1）修改 nextcloud 配置文件
-```
-vi /var/lib/docker/volumes/dockeronlyofficenextcloudmysql_app_data/_data/config/config.php
-```
-> 修改24、30行的IP地址为域名
-```
-array (
-    0 => '192.168.9.51',
-    1 => 'nginx-server',
-  ),
-  'datadirectory' => '/var/www/html/data',
-  'dbtype' => 'mysql',
-  'version' => '15.0.0.10',
-  'overwrite.cli.url' => 'https://192.168.9.51',
-
-```
 ## 制作自签名证书
 ```
 docker exec -it app-server bash
