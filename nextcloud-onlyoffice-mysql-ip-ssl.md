@@ -64,15 +64,7 @@ bash set_configuration.sh
 /var/lib/docker/volumes/dockeronlyofficenextcloudmysql_app_data/_data
 
 ## 2、配置通过域名访问nextcloud
-* 1）修改 nginx 配置文件
-```
-vi /root/docker-onlyoffice-nextcloud-mysql/nginx.conf
-```
-> 在server 部分增加下面的内容，后面的cloud.rexen.net 为你的域名
-```
-server_name 192.168.9.51;
-```
-* 2）修改 nextcloud 配置文件
+* 1）修改 nextcloud 配置文件
 ```
 vi /var/lib/docker/volumes/dockeronlyofficenextcloudmysql_app_data/_data/config/config.php
 ```
@@ -143,8 +135,8 @@ nginx:
   server {
         listen 443 ssl;
         server_name 192.168.9.51;
-        ssl_certificate /etc/nginx/cert/fullchain.pem;
-        ssl_certificate_key /etc/nginx/cert/privkey.pem;
+        ssl_certificate /etc/nginx/cert/nextcloud.crt;
+        ssl_certificate_key /etc/nginx/cert/nextcloud.key;
         ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
 ```
 
