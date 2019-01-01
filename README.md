@@ -1,4 +1,4 @@
-## 本教程通过docker 搭建nextcloud 并继承onlyoffice，数据库采用mariadb
+## 本教程通过docker 搭建nextcloud 并集成onlyoffice，数据库采用mariadb
 
 ## 通过https://192.168.9.51 访问nextcloud
 
