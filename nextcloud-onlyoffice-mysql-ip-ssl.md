@@ -62,6 +62,10 @@ bash set_configuration.sh
 /root/docker-onlyoffice-nextcloud-mysql/nginx.conf
 * nextcloud数据存储位置
 /var/lib/docker/volumes/dockeronlyofficenextcloudmysql_app_data/_data
+***
+## 以上将搭建好 http 方式的nextcloud ，如果想通过https 访问，请继续下面的教程
+***
+
 
 ## 制作自签名证书
 ```
@@ -95,7 +99,6 @@ Email Address []:zcm8483@gmail.com
 ```
 exit
 cd /root/docker-onlyoffice-nextcloud-mysql/
-mkdir cert
 docker container cp app-server:/var/www/html/cert ./
 ```
 
@@ -137,7 +140,15 @@ server {
 ```
 vi /var/lib/docker/volumes/dockeronlyofficenextcloudmysql_app_data/_data/config/config.php
 ```
-> 修改其中的30、43行为你的nextcloud 访问地址https://192.168.9.51
+> 修改其中的30、43行，为你的nextcloud 访问地址https://192.168.9.51
+array (
+    0 => '192.168.9.51',
+    1 => 'nginx-server',
+  ),
+  'datadirectory' => '/var/www/html/data',
+  'dbtype' => 'mysql',
+  'version' => '15.0.0.10',
+  'overwrite.cli.url' => 'https://192.168.9.51',
 
 ## 修改onlyoffice 的default.json 文件，信任不可信的ssl
 ```
