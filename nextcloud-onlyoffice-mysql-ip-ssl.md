@@ -177,3 +177,4 @@ docker-compose down
 docker-compose up -d
 ```
 **注意:用docker-compose restart 是不能加载分区的 **
+
