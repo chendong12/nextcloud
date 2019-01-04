@@ -131,7 +131,8 @@ nginx:
       - ./cert:/etc/nginx/cert
 ```
 * 修改nginx 配置文件，配置ssl证书
-```vi /root/docker-onlyoffice-nextcloud-mysql/nginx.conf
+```
+vi /root/docker-onlyoffice-nextcloud-mysql/nginx.conf
 ```
 >  （1）在server部分做如下改动，ssl 开头的三行内容是增加的
 ```
