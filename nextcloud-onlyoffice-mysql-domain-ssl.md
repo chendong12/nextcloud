@@ -134,7 +134,7 @@ nginx:
 ```
 vi /root/docker-onlyoffice-nextcloud-mysql/nginx.conf
 ```
->  （1）在server部分做如下改动，ssl 开头的三行内容是增加的
+>  （1）在server部分做如下改动，ssl 开头的三行内容是增加的, cloud.rexen.net 修改为你实际的域名
 ```
   server {
         listen 443 ssl;
@@ -144,7 +144,7 @@ vi /root/docker-onlyoffice-nextcloud-mysql/nginx.conf
         ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
 ```
 
-> （2）然后在倒数第二行增加如下内容目的是为了访问http 的时候自动跳转到https
+> （2）然后在倒数第二行增加如下内容目的是为了访问http 的时候自动跳转到https，注意修改下面的cloud.rexen.net为你实际的域名
 ```
 server {
            listen 80;
