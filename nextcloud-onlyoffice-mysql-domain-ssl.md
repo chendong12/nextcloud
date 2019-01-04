@@ -113,7 +113,7 @@ IMPORTANT NOTES:
    Donating to ISRG / Let's Encrypt:   https://letsencrypt.org/donate
    Donating to EFF:                    https://eff.org/donate-le
 ```
-* 复制上面生成的证书文件
+* 通过下面的命令复制上面生成的证书文件，注意把下面cloud.rexen.net 修改为你的域名
 ```
 mkdir /root/docker-onlyoffice-nextcloud-mysql/cert
 cp  /etc/letsencrypt/live/cloud.rexen.net/fullchain.pem /root/docker-onlyoffice-nextcloud-mysql/cert
